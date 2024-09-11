@@ -4,14 +4,12 @@ class fruit {
   public $name;
   public $color;
   public $weight;
-
 //   function set_name($name) {  // a public function (default)
 //     $this->name = $name;
 //   }
 //   function get_name(){
 //     return $this->name;
 //   }
-
   protected function set_color($color) { // a protected function
     $this->color = $color;
   }
@@ -34,5 +32,4 @@ echo $obj->get_color();
 
 // $obj->set_weight("250");
 // echo $obj->get_weight();
-
 ?>

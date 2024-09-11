@@ -20,9 +20,18 @@ class Database {
         $result = $this->conn->query($sql);
 
         if ($result->num_rows > 0) {
-            echo "<table border='1'><tr><th>ID</th><th>Name</th><th>City</th></tr>";
+            echo "<table border='1'>
+            <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>City</th>
+            </tr>";
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["city"] . "</td></tr>";
+                echo "<tr>
+                <td>" . $row["id"] . "</td>
+                <td>" . $row["name"] . "</td>
+                <td>" . $row["city"] . "</td>
+                </tr>";
             }
             echo "</table>";
         } else {
@@ -49,38 +58,39 @@ class Database {
 
 
 
-if(isset($post['submit'])){
-$id=$_post['id'];
-$name = $_POST['name'];
-$city = $_POST['city'];
+// if(isset($_POST['submit'])){
+// $id=$_POST['id'];
+// $name = $_POST['name'];
+// $city = $_POST['city'];
+
+// $db = new Database();
+// $db->create($name, $city);
+// $db->read();
+// $db->update($id, $name, $city);
+// $db->delete($id);
+// }
+
 
 $db = new Database();
-$db->create($name, $city);
-$db->read();
-$db->update($id, $name, $city);
-$db->delete($id);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['create'])) {
+        $name = $_POST['name'];
+        $city = $_POST['city'];
+        $db->create($name, $city);
+    } elseif (isset($_POST['read'])) {
+        $db->read();
+    } elseif (isset($_POST['update'])) {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $city = $_POST['city'];
+        $db->update($id, $name, $city);
+    } elseif (isset($_POST['delete'])) {
+        $id = $_POST['id'];
+        $db->delete($id);
+    }
 }
 
 
-
-
-// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//     if (isset($_POST['create'])) {
-//         $name = $_POST['name'];
-//         $city = $_POST['city'];
-//         $db->create($name, $city);
-//     } elseif (isset($_POST['read'])) {
-//         $db->read();
-//     } elseif (isset($_POST['update'])) {
-//         $id = $_POST['id'];
-//         $name = $_POST['name'];
-//         $city = $_POST['city'];
-//         $db->update($id, $name, $city);
-//     } elseif (isset($_POST['delete'])) {
-//         $id = $_POST['id'];
-//         $db->delete($id);
-//     }
-// }
 ?>
 
 <!DOCTYPE html>

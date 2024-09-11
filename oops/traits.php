@@ -13,7 +13,7 @@ trait trait2{
 
 class class1{
     use trait1;
-    use trait2;
+    // use trait2;
 }
 class class2{
     use trait1, trait2;
@@ -22,7 +22,7 @@ class class2{
 $obj= new class1();
 $obj->msg1();
 echo "<br>";
-$obj->msg2();
+// $obj->msg2();
 echo "<br>";
 
 $obj2= new class2();

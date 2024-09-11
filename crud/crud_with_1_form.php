@@ -29,20 +29,27 @@ if (isset($_POST['create'])) {
 
 // Update
 if (isset($_POST['update'])) {
-    if (!empty($_POST['id']) && !empty($_POST['name']) && !empty($_POST['city'])) {
+    if (!empty($_POST['id']) && !empty($_POST['name']) && !empty($_POST['city']) ) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $city = $_POST['city'];
 
-    $sql = "UPDATE info SET name='$name', city='$city' WHERE id='$id'";
+    $sql = "UPDATE info SET name='$name' city='$city' WHERE id='$id'";
     $result= mysqli_query($conn,$sql);
     if ($result) {
         echo "Record updated successfully";
     }
-}else{
+// }
+elseif ($name) {
+        $id = $_POST['id'];
+    $name = $_POST['name'];
+        // Update only name
+        $sql = "UPDATE info SET name='$name' WHERE id='$id'";
+}
+else{
     echo "ID, Name, and City fields are required for update";
 }
-}
+}}
 // Delete 
 if (isset($_POST['delete'])) {
     if (!empty($_POST['id'])) {
@@ -59,9 +66,10 @@ if (isset($_POST['delete'])) {
 }
 // Read 
 if (isset($_POST['read'])) {
-    if (!empty($_POST['name'])) {
+    if (!empty($_POST['name'])&& !empty($_POST['city'])) {
         $name = $_POST['name'];
-        $sql = "SELECT id, name, city FROM info WHERE name='$name'";
+        $city = $_POST['city'];
+        $sql = "SELECT id, name, city FROM info WHERE name='$name' && city='$city'";
     } else {
         $sql = "SELECT id, name, city FROM info";
     }

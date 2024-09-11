@@ -18,7 +18,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td id="table-data">
                 <table border="1">
                     <tr>
                         <th>ID</th>
@@ -28,5 +28,21 @@
             </td>
         </tr>
     </table>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#load_button").("click",function(e){
+                $.ajax({
+                    url:"",
+                    type:"POST",
+                    success: function(data){
+                        $("#table-data").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

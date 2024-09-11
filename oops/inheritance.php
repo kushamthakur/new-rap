@@ -12,7 +12,6 @@ class Fruit{
 //         echo "This fruit is {$this->name} and the color is {$this->color}";
 //     }
 
-
     protected function intro(){
         echo "this fruit is {$this->name} and the color is {$this->color}";
     }
